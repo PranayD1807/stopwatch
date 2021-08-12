@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(45deg, green, orange);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: aliceblue;
+            font-family: 'Lobster', cursive;
+            font-size: 50px;
+
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* font-family: 'Lobster', cursive; */
+
+        }
+
+        h2 {
+            padding: 0%;
+            margin: 0%;
+            text-decoration: underline;
+
+        }
+
+        h3 {
+            padding: 0% 5px;
+            margin: 0% 5px;
+            width: 130px;
+        }
+
+        .watch {
+            font-size: 100px;
+            margin: 20px;
+            padding: 30px 60px;
+            border: 5px solid whitesmoke;
+            border-radius: 40px;
+            text-align: center;
+            display: flex;
+            /* width: 325px; */
+        }
+
+        .watch:hover {
+            background-color: aliceblue;
+            color: orange;
+        }
+
+        .btn {
+            padding: 15px;
+            font-size: 3rem;
+            font-family: 'Lobster', cursive;
+            background: transparent;
+            border: 3px solid white;
+            color: aliceblue;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: aliceblue;
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>StopWatch</h2>
+        <div class="watch">
+            <h3 id="sec">00</h3> :
+            <h3 id="tens">00</h3>
+        </div>
+        <div class="buttons">
+            <button id="start" class="btn" onclick="start()">Start</button>
+            <button id="stop" class="btn" onclick="stop()">Stop</button>
+            <button id="reset" class="btn" onclick="reset()">Reset</button>
+        </div>
+    </div>
+    <script>
+        let sec = 0;
+        let tens = 0;
+        // interval =  setInterval(timer, 1000) here 1000 = 1sec 
+
+        // needs to be stored in a variable
+        var interval;
+        function timer() {
+            document.getElementById("sec").innerHTML = sec;
+            document.getElementById("tens").innerHTML = tens;
+            if (tens >= 100) {
+                sec++;
+                tens = 0;
+            }
+            if (tens < 10) {
+                document.getElementById("tens").innerHTML = "0" + tens;
+            }
+            if (sec < 10) {
+                document.getElementById("sec").innerHTML = "0" + sec;
+
+            }
+            tens++;
+        }
+        function start() {
+            interval = setInterval(timer, 10)
+        }
+        function stop() {
+            clearInterval(interval);
+        }
+        function reset() {
+            sec = 00;
+            tens = 00;
+            document.getElementById("tens").innerHTML = "0" + tens;
+            document.getElementById("sec").innerHTML = "0" + sec;
+            clearInterval(interval);
+
+        }
+    </script>
+</body>
+
+</html>
